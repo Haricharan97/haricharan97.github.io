@@ -5,52 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IB Math AA HL - Complete Revision</title>
     <style>
-      
+        /* --- CSS STYLES --- */
         :root {
-            --primary: #2c3e50;   
-            --secondary: #3498db;  
-            --accent: #e74c3c;    
-            --light: #ecf0f1;      
-            --formula-bg: #e8f6f3;
-            --formula-border: #1abc9c;
-            --example-bg: #fcf3cf;
-            --example-border: #f1c40f;
+            /* Modern Indigo & Teal Theme */
+            --primary: #2c2c54;     /* Deep Indigo Background */
+            --secondary: #00cec9;   /* Bright Teal Highlight */
+            --accent: #d63031;      /* Deep Red for emphasis */
+            --text-main: #2d3436;   /* Dark Grey Text */
+            --bg-body: #dfe6e9;     /* Light Grey Body Background */
+            --bg-section: #ffffff;  /* White Section Background */
+            
+            /* Boxes */
+            --formula-bg: #e0f7fa;  /* Light Cyan */
+            --formula-border: #00b894; /* Teal Border */
+            --example-bg: #fff7d6;  /* Light Yellow */
+            --example-border: #fdcb6e; /* Mustard Border */
         }
 
         html {
-            scroll-behavior: smooth; 
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f9;
+            color: var(--text-main);
+            background-color: var(--bg-body);
             margin: 0;
             padding: 0;
         }
 
-        
+        /* Navigation Bar */
         nav {
             position: sticky;
             top: 0;
             background-color: var(--primary);
-            color: white;
             padding: 1rem;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             z-index: 1000;
-            overflow-x: auto; 
+            overflow-x: auto;
             white-space: nowrap;
         }
 
         nav a {
-            color: white;
+            color: #ecf0f1;
             text-decoration: none;
             margin: 0 15px;
-            font-weight: bold;
+            font-weight: 600;
             font-size: 1rem;
             display: inline-block;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
@@ -58,32 +63,33 @@
             border-bottom: 2px solid var(--secondary);
         }
 
-        
+        /* Header */
         header {
-            background-color: #34495e;
+            background: linear-gradient(135deg, #2c2c54 0%, #474787 100%);
             color: white;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
             text-align: center;
         }
 
-        header h1 { margin: 0; font-size: 2.5rem; }
-        header p { font-size: 1.2rem; opacity: 0.8; }
+        header h1 { margin: 0; font-size: 2.8rem; font-weight: 700; }
+        header p { font-size: 1.3rem; opacity: 0.9; margin-top: 10px; }
 
-      
+        /* Main Container */
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: -30px auto 0; /* Pull up to overlap header slightly */
             padding: 20px;
+            position: relative;
         }
 
-       
+        /* Sections */
         section {
-            background: white;
-            margin-bottom: 3rem;
+            background: var(--bg-section);
+            margin-bottom: 2.5rem;
             padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            scroll-margin-top: 80px; 
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            scroll-margin-top: 90px;
         }
 
         h2 {
@@ -94,80 +100,102 @@
         }
 
         h3 {
-            color: #2980b9;
+            color: #0984e3;
             margin-top: 2rem;
-            border-left: 4px solid #2980b9;
-            padding-left: 10px;
+            border-left: 5px solid #0984e3;
+            padding-left: 12px;
         }
 
-        
+        /* Content Boxes */
         .formula-box {
             background-color: var(--formula-bg);
             border-left: 5px solid var(--formula-border);
-            padding: 15px;
-            margin: 15px 0;
+            padding: 15px 20px;
+            margin: 20px 0;
             font-family: "Courier New", Courier, monospace;
             font-weight: bold;
             font-size: 1.1em;
+            border-radius: 0 8px 8px 0;
         }
 
         .example-box {
             background-color: var(--example-bg);
-            border: 1px solid var(--example-border);
+            border: 2px solid var(--example-border);
             padding: 20px;
-            margin: 20px 0;
-            border-radius: 5px;
+            margin: 25px 0;
+            border-radius: 8px;
         }
 
         .example-title {
             display: block;
-            font-weight: bold;
-            color: #d35400;
+            font-weight: 800;
+            color: #e17055;
             margin-bottom: 10px;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            letter-spacing: 1.2px;
         }
 
-      
-        .diagram {
-            font-family: "Courier New", Courier, monospace;
-            white-space: pre;
-            background: var(--primary);
-            color: var(--light);
-            padding: 15px;
+        /* Images */
+        .img-container {
             text-align: center;
-            border-radius: 5px;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.2;
-            font-size: 14px;
+            margin: 25px 0;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dfe6e9;
         }
 
-    
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .caption {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #636e72;
+            font-style: italic;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        th { background-color: var(--primary); color: white; padding: 12px; text-align: left; }
+        td { border: 1px solid #ddd; padding: 12px; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
-            color: #7f8c8d;
+            padding: 3rem;
+            color: #636e72;
             font-size: 0.9rem;
-            border-top: 1px solid #ddd;
         }
 
         .top-link {
             display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            font-weight: bold;
             color: var(--secondary);
             text-decoration: none;
         }
         
-        .top-link:hover { text-decoration: underline; }
+        .top-link:hover { text-decoration: underline; color: var(--primary); }
 
-        
+        /* Responsive */
         @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
+            header h1 { font-size: 2rem; }
             section { padding: 1.5rem; }
-            nav a { margin: 0 10px; font-size: 0.9rem; }
+            nav a { margin: 0 8px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -191,12 +219,11 @@
 
         <section>
             <h2>How to use this guide</h2>
-            <p>This is a static, offline resource for the Analysis and Approaches HL course. 
-            Scroll down or use the navigation bar above to jump to specific chapters.</p>
+            <p>This is your offline revision resource. Scroll down or use the navigation bar to jump to specific chapters.</p>
             <ul>
-                <li><strong>Formulas</strong> are highlighted in green boxes.</li>
-                <li><strong>Worked Examples</strong> are in yellow boxes.</li>
-                <li><strong>Diagrams</strong> are represented visually using text.</li>
+                <li><strong>Formulas</strong> are in <span style="color:var(--secondary); font-weight:bold;">Cyan</span> boxes.</li>
+                <li><strong>Worked Examples</strong> are in <span style="color:#fdcb6e; font-weight:bold;">Yellow</span> boxes.</li>
+                <li><strong>Diagrams</strong> are provided as images below.</li>
             </ul>
         </section>
 
@@ -213,15 +240,9 @@
             <p>The inverse <code>f<sup>-1</sup>(x)</code> reverses the action of <code>f(x)</code>. 
             Geometrically, the graph of an inverse is a reflection of the original function over the line <code>y = x</code>.</p>
             
-            <div class="diagram">
-      y
-      |      / y=x (Mirror Line)
-      |    /
-      |  /    * (b, a) [Inverse Point]
-      |/
-      +------------ x
-     /|
-   /  | * (a, b) [Original Point]
+            <div class="img-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Inverse_function.svg/600px-Inverse_function.svg.png" alt="Graph showing inverse function reflection over y=x">
+                <span class="caption">Figure 1.1: Reflection of f(x) over the line y=x to find f⁻¹(x).</span>
             </div>
 
             <div class="example-box">
@@ -241,7 +262,7 @@
             <h2>Chapter 2: Algebra</h2>
 
             <h3>Logarithms</h3>
-            <p>Logarithms allow us to solve for exponents. Key laws must be memorized for paper 1 (non-calculator).</p>
+            <p>Logarithms allow us to solve for exponents. Key laws must be memorized for paper 1.</p>
             <div class="formula-box">
                 log<sub>a</sub>(xy) = log<sub>a</sub>x + log<sub>a</sub>y<br>
                 log<sub>a</sub>(x/y) = log<sub>a</sub>x - log<sub>a</sub>y<br>
@@ -272,17 +293,11 @@
             <h2>Chapter 3: Trigonometry</h2>
 
             <h3>The Unit Circle</h3>
-            <p>For any angle θ, the coordinate on the unit circle is <code>(cos θ, sin θ)</code>.</p>
+            <p>For any angle θ, the coordinate on the unit circle is <code>(cos θ, sin θ)</code>. The x-coordinate is cosine, the y-coordinate is sine.</p>
             
-            <div class="diagram">
-          90° (π/2)
-             |
-      (-1,0) | (0,1)
-   180° -----+----- 0° / 360° (2π)
-    (π)      | (1,0)
-             |
-          270° (3π/2)
-           (0,-1)
+            <div class="img-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Unit_circle_angles_color.svg/600px-Unit_circle_angles_color.svg.png" alt="Unit Circle Chart with Radians and Degrees">
+                <span class="caption">Figure 3.1: The Unit Circle showing exact values for key angles.</span>
             </div>
 
             <h3>Double Angle Identities</h3>
@@ -297,7 +312,7 @@
                 <span class="example-title">Worked Example: Trig Equation</span>
                 <p><strong>Question:</strong> Solve sin(2x) = cos(x) for 0 ≤ x ≤ π.</p>
                 <p><strong>1. Use Identity:</strong> 2sin(x)cos(x) = cos(x)</p>
-                <p><strong>2. Rearrange (Do not divide by cos x!):</strong> 2sin(x)cos(x) - cos(x) = 0</p>
+                <p><strong>2. Rearrange:</strong> 2sin(x)cos(x) - cos(x) = 0</p>
                 <p><strong>3. Factor:</strong> cos(x) [2sin(x) - 1] = 0</p>
                 <p><strong>4. Solve cases:</strong><br>
                    Case A: cos(x) = 0 → x = π/2<br>
@@ -311,8 +326,8 @@
             <h2>Chapter 4: Sequences & Series</h2>
 
             <h3>Arithmetic vs Geometric</h3>
-            <table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-bottom: 1rem;">
-                <tr style="background-color: #eee;">
+            <table>
+                <tr>
                     <th>Type</th>
                     <th>Rule</th>
                     <th>nth Term (u<sub>n</sub>)</th>
@@ -338,12 +353,9 @@
             <div class="example-box">
                 <span class="example-title">Worked Example: Sigma Notation</span>
                 <p><strong>Question:</strong> Calculate Σ (from n=1 to ∞) of 10(0.5)<sup>n</sup>.</p>
-                <p><strong>1. Expand terms:</strong><br>
-                   n=1: 10(0.5) = 5<br>
-                   n=2: 10(0.25) = 2.5<br>
-                   n=3: 1.25</p>
-                <p><strong>2. Identify type:</strong> Geometric, u<sub>1</sub>=5, r=0.5.</p>
-                <p><strong>3. Apply Formula:</strong> S = 5 / (1 - 0.5)</p>
+                <p><strong>1. Expand terms:</strong> u<sub>1</sub>=5, u<sub>2</sub>=2.5...</p>
+                <p><strong>2. Identify type:</strong> Geometric, r=0.5.</p>
+                <p><strong>3. Apply Formula:</strong> S = 5 / (1 - 0.5) = 10</p>
                 <p><strong>Answer:</strong> 10</p>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
@@ -352,19 +364,15 @@
         <section id="calculus">
             <h2>Chapter 5: Introduction to Calculus</h2>
 
-            <h3>Differentiation (First Principles)</h3>
-            <p>The derivative <code>f'(x)</code> is the gradient of the tangent to the curve.</p>
+            <h3>Differentiation</h3>
+            <p>The derivative <code>f'(x)</code> represents the gradient of the tangent to the curve at any point.</p>
             <div class="formula-box">
                 f'(x) = lim (h→0) [ (f(x+h) - f(x)) / h ]
             </div>
 
-            <div class="diagram">
-       |      / (Tangent Line)
-     y |     /
-       |   _/ (Curve)
-       | _/
-       |/
-       +------------ x
+            <div class="img-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Tangent_to_a_curve.svg/600px-Tangent_to_a_curve.svg.png" alt="Graph showing tangent line to a curve">
+                <span class="caption">Figure 5.1: The derivative is the slope of the tangent line (red).</span>
             </div>
 
             <h3>Power Rule</h3>
@@ -376,11 +384,9 @@
             <div class="example-box">
                 <span class="example-title">Worked Example: Finding Equation of Tangent</span>
                 <p><strong>Question:</strong> Find the equation of the tangent to y = x<sup>2</sup> + 3 at x = 1.</p>
-                <p><strong>1. Find y-coordinate:</strong> y = (1)<sup>2</sup> + 3 = 4. Point is (1, 4).</p>
-                <p><strong>2. Find Gradient (Derivative):</strong> dy/dx = 2x.</p>
-                <p><strong>3. Evaluate Gradient at x=1:</strong> m = 2(1) = 2.</p>
-                <p><strong>4. Equation of Line:</strong> y - y<sub>1</sub> = m(x - x<sub>1</sub>)<br>
-                   y - 4 = 2(x - 1)</p>
+                <p><strong>1. Point:</strong> y(1) = 4. Point is (1, 4).</p>
+                <p><strong>2. Gradient:</strong> dy/dx = 2x. At x=1, m=2.</p>
+                <p><strong>3. Equation:</strong> y - 4 = 2(x - 1) → y = 2x + 2</p>
                 <p><strong>Answer:</strong> y = 2x + 2</p>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
