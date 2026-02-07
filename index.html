@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB Math AA HL - Complete Revision</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary: #2c3e50;    /* Dark Blue */
+            --secondary: #3498db;  /* Light Blue */
+            --accent: #e74c3c;     /* Red for emphasis */
+            --light: #ecf0f1;      /* Light Gray background */
+            --formula-bg: #e8f6f3;
+            --formula-border: #1abc9c;
+            --example-bg: #fcf3cf;
+            --example-border: #f1c40f;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Enables smooth jumping between sections */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            overflow-x: auto; /* Handles small screens */
+            white-space: nowrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        /* Header */
+        header {
+            background-color: #34495e;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.8; }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sections */
+        section {
+            background: white;
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            scroll-margin-top: 80px; /* Offset for sticky nav */
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #2980b9;
+            margin-top: 2rem;
+            border-left: 4px solid #2980b9;
+            padding-left: 10px;
+        }
+
+        /* Special Content Boxes */
+        .formula-box {
+            background-color: var(--formula-bg);
+            border-left: 5px solid var(--formula-border);
+            padding: 15px;
+            margin: 15px 0;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .example-box {
+            background-color: var(--example-bg);
+            border: 1px solid var(--example-border);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .example-title {
+            display: block;
+            font-weight: bold;
+            color: #d35400;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* ASCII Diagrams */
+        .diagram {
+            font-family: "Courier New", Courier, monospace;
+            white-space: pre;
+            background: var(--primary);
+            color: var(--light);
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.2;
+            font-size: 14px;
+        }
+
+        /* Footer and Utility */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .top-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .top-link:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            section { padding: 1.5rem; }
+            nav a { margin: 0 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#functions">1. Functions</a>
+        <a href="#algebra">2. Algebra</a>
+        <a href="#trigonometry">3. Trig</a>
+        <a href="#sequences">4. Sequences</a>
+        <a href="#calculus">5. Calculus</a>
+    </nav>
+
+    <header id="home">
+        <h1>IB Math AA HL</h1>
+        <p>Year 1 Revision Guide</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>How to use this guide</h2>
+            <p>This is a static, offline resource for the Analysis and Approaches HL course. 
+            Scroll down or use the navigation bar above to jump to specific chapters.</p>
+            <ul>
+                <li><strong>Formulas</strong> are highlighted in green boxes.</li>
+                <li><strong>Worked Examples</strong> are in yellow boxes.</li>
+                <li><strong>Diagrams</strong> are represented visually using text.</li>
+            </ul>
+        </section>
+
+        <section id="functions">
+            <h2>Chapter 1: Functions</h2>
+            
+            <h3>Composite Functions</h3>
+            <p>Composition is applying one function to the result of another. Notation <code>(f ∘ g)(x)</code> is read as "f of g of x".</p>
+            <div class="formula-box">
+                (f ∘ g)(x) = f(g(x))
+            </div>
+
+            <h3>Inverse Functions</h3>
+            <p>The inverse <code>f<sup>-1</sup>(x)</code> reverses the action of <code>f(x)</code>. 
+            Geometrically, the graph of an inverse is a reflection of the original function over the line <code>y = x</code>.</p>
+            
+            <div class="diagram">
+      y
+      |      / y=x (Mirror Line)
+      |    /
+      |  /    * (b, a) [Inverse Point]
+      |/
+      +------------ x
+     /|
+   /  | * (a, b) [Original Point]
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">Worked Example: Finding Inverse</span>
+                <p><strong>Question:</strong> Find the inverse of f(x) = (2x + 1) / (x - 3).</p>
+                <p><strong>1. Swap variables:</strong> x = (2y + 1) / (y - 3)</p>
+                <p><strong>2. Multiply by denominator:</strong> x(y - 3) = 2y + 1</p>
+                <p><strong>3. Expand:</strong> xy - 3x = 2y + 1</p>
+                <p><strong>4. Group y terms:</strong> xy - 2y = 3x + 1</p>
+                <p><strong>5. Factor y:</strong> y(x - 2) = 3x + 1</p>
+                <p><strong>Answer:</strong> f<sup>-1</sup>(x) = (3x + 1) / (x - 2)</p>
+            </div>
+            <a href="#home" class="top-link">↑ Back to Top</a>
+        </section>
+
+        <section id="algebra">
+            <h2>Chapter 2: Algebra</h2>
+
+            <h3>Logarithms</h3>
+            <p>Logarithms allow us to solve for exponents. Key laws must be memorized for paper 1 (non-calculator).</p>
+            <div class="formula-box">
+                log<sub>a</sub>(xy) = log<sub>a</sub>x + log<sub>a</sub>y<br>
+                log<sub>a</sub>(x/y) = log<sub>a</sub>x - log<sub>a</sub>y<br>
+                log<sub>a</sub>(x<sup>k</sup>) = k · log<sub>a</sub>x<br>
+                Base Change: log<sub>a</sub>b = ln(b) / ln(a)
+            </div>
+
+            <h3>The Binomial Theorem</h3>
+            <p>Used to expand <code>(a + b)<sup>n</sup></code>.</p>
+            <div class="formula-box">
+                General Term: T<sub>r+1</sub> = <sub>n</sub>C<sub>r</sub> · a<sup>n-r</sup> · b<sup>r</sup>
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">Worked Example: Finding a specific term</span>
+                <p><strong>Question:</strong> Find the coefficient of x<sup>2</sup> in the expansion of (2x + 3)<sup>4</sup>.</p>
+                <p><strong>1. Identify parts:</strong> a = 2x, b = 3, n = 4. We need the term with x<sup>2</sup>.</p>
+                <p><strong>2. Determine r:</strong> Since term has (2x)<sup>4-r</sup>, we need 4-r = 2, so r = 2.</p>
+                <p><strong>3. Apply Formula:</strong> <sub>4</sub>C<sub>2</sub> · (2x)<sup>2</sup> · (3)<sup>2</sup></p>
+                <p><strong>4. Calculate:</strong> 6 · 4x<sup>2</sup> · 9</p>
+                <p><strong>5. Simplify:</strong> 6 · 36 · x<sup>2</sup> = 216x<sup>2</sup></p>
+                <p><strong>Answer:</strong> The coefficient is 216.</p>
+            </div>
+            <a href="#home" class="top-link">↑ Back to Top</a>
+        </section>
+
+        <section id="trigonometry">
+            <h2>Chapter 3: Trigonometry</h2>
+
+            <h3>The Unit Circle</h3>
+            <p>For any angle θ, the coordinate on the unit circle is <code>(cos θ, sin θ)</code>.</p>
+            
+            <div class="diagram">
+          90° (π/2)
+             |
+      (-1,0) | (0,1)
+   180° -----+----- 0° / 360° (2π)
+    (π)      | (1,0)
+             |
+          270° (3π/2)
+           (0,-1)
+            </div>
+
+            <h3>Double Angle Identities</h3>
+            <div class="formula-box">
+                sin(2θ) = 2 sinθ cosθ<br>
+                cos(2θ) = cos<sup>2</sup>θ - sin<sup>2</sup>θ<br>
+                        = 2cos<sup>2</sup>θ - 1<br>
+                        = 1 - 2sin<sup>2</sup>θ
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">Worked Example: Trig Equation</span>
+                <p><strong>Question:</strong> Solve sin(2x) = cos(x) for 0 ≤ x ≤ π.</p>
+                <p><strong>1. Use Identity:</strong> 2sin(x)cos(x) = cos(x)</p>
+                <p><strong>2. Rearrange (Do not divide by cos x!):</strong> 2sin(x)cos(x) - cos(x) = 0</p>
+                <p><strong>3. Factor:</strong> cos(x) [2sin(x) - 1] = 0</p>
+                <p><strong>4. Solve cases:</strong><br>
+                   Case A: cos(x) = 0 → x = π/2<br>
+                   Case B: sin(x) = 1/2 → x = π/6, 5π/6</p>
+                <p><strong>Answer:</strong> x = π/6, π/2, 5π/6</p>
+            </div>
+            <a href="#home" class="top-link">↑ Back to Top</a>
+        </section>
+
+        <section id="sequences">
+            <h2>Chapter 4: Sequences & Series</h2>
+
+            <h3>Arithmetic vs Geometric</h3>
+            <table border="1" cellpadding="10" style="border-collapse: collapse; width: 100%; margin-bottom: 1rem;">
+                <tr style="background-color: #eee;">
+                    <th>Type</th>
+                    <th>Rule</th>
+                    <th>nth Term (u<sub>n</sub>)</th>
+                </tr>
+                <tr>
+                    <td>Arithmetic</td>
+                    <td>Add difference <strong>d</strong></td>
+                    <td>u<sub>1</sub> + (n-1)d</td>
+                </tr>
+                <tr>
+                    <td>Geometric</td>
+                    <td>Multiply ratio <strong>r</strong></td>
+                    <td>u<sub>1</sub> · r<sup>n-1</sup></td>
+                </tr>
+            </table>
+
+            <h3>Sum to Infinity</h3>
+            <p>Only exists for Geometric series where <code>|r| < 1</code> (convergent).</p>
+            <div class="formula-box">
+                S<sub>∞</sub> = u<sub>1</sub> / (1 - r)
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">Worked Example: Sigma Notation</span>
+                <p><strong>Question:</strong> Calculate Σ (from n=1 to ∞) of 10(0.5)<sup>n</sup>.</p>
+                <p><strong>1. Expand terms:</strong><br>
+                   n=1: 10(0.5) = 5<br>
+                   n=2: 10(0.25) = 2.5<br>
+                   n=3: 1.25</p>
+                <p><strong>2. Identify type:</strong> Geometric, u<sub>1</sub>=5, r=0.5.</p>
+                <p><strong>3. Apply Formula:</strong> S = 5 / (1 - 0.5)</p>
+                <p><strong>Answer:</strong> 10</p>
+            </div>
+            <a href="#home" class="top-link">↑ Back to Top</a>
+        </section>
+
+        <section id="calculus">
+            <h2>Chapter 5: Introduction to Calculus</h2>
+
+            <h3>Differentiation (First Principles)</h3>
+            <p>The derivative <code>f'(x)</code> is the gradient of the tangent to the curve.</p>
+            <div class="formula-box">
+                f'(x) = lim (h→0) [ (f(x+h) - f(x)) / h ]
+            </div>
+
+            <div class="diagram">
+       |      / (Tangent Line)
+     y |     /
+       |   _/ (Curve)
+       | _/
+       |/
+       +------------ x
+            </div>
+
+            <h3>Power Rule</h3>
+            <div class="formula-box">
+                If f(x) = ax<sup>n</sup><br>
+                Then f'(x) = anx<sup>n-1</sup>
+            </div>
+
+            <div class="example-box">
+                <span class="example-title">Worked Example: Finding Equation of Tangent</span>
+                <p><strong>Question:</strong> Find the equation of the tangent to y = x<sup>2</sup> + 3 at x = 1.</p>
+                <p><strong>1. Find y-coordinate:</strong> y = (1)<sup>2</sup> + 3 = 4. Point is (1, 4).</p>
+                <p><strong>2. Find Gradient (Derivative):</strong> dy/dx = 2x.</p>
+                <p><strong>3. Evaluate Gradient at x=1:</strong> m = 2(1) = 2.</p>
+                <p><strong>4. Equation of Line:</strong> y - y<sub>1</sub> = m(x - x<sub>1</sub>)<br>
+                   y - 4 = 2(x - 1)</p>
+                <p><strong>Answer:</strong> y = 2x + 2</p>
+            </div>
+            <a href="#home" class="top-link">↑ Back to Top</a>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; IB Math AA HL Offline Revision Tool
+    </footer>
+
+</body>
+</html>
