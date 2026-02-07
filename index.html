@@ -3,28 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IB Math AA HL - Complete Revision</title>
+    <title>IB Math AA HL - Interactive Revision</title>
     <style>
-        /* --- CSS STYLES --- */
+        
         :root {
-            /* Modern Indigo & Teal Theme */
-            --primary: #2c2c54;     /* Deep Indigo Background */
-            --secondary: #00cec9;   /* Bright Teal Highlight */
-            --accent: #d63031;      /* Deep Red for emphasis */
-            --text-main: #2d3436;   /* Dark Grey Text */
-            --bg-body: #dfe6e9;     /* Light Grey Body Background */
-            --bg-section: #ffffff;  /* White Section Background */
+           
+            --primary: #2c2c54;   
+            --secondary: #00cec9; 
+            --accent: #d63031;      
+            --text-main: #2d3436;  
+            --bg-body: #dfe6e9;    
+            --bg-section: #ffffff;  
             
-            /* Boxes */
-            --formula-bg: #e0f7fa;  /* Light Cyan */
-            --formula-border: #00b894; /* Teal Border */
-            --example-bg: #fff7d6;  /* Light Yellow */
-            --example-border: #fdcb6e; /* Mustard Border */
+           
+            --formula-bg: #e0f7fa;
+            --formula-border: #00b894;
+            --example-bg: #fff7d6;
+            --example-border: #fdcb6e;
+            --input-bg: #ffffff;
         }
 
-        html {
-            scroll-behavior: smooth;
+       
+        [data-theme="dark"] {
+            --primary: #4834d4;      
+            --secondary: #81ecec;    
+            --text-main: #dfe6e9;    
+            --bg-body: #1e272e;      
+            --bg-section: #2d3436;   
+            
+            
+            --formula-bg: #2f3640;   
+            --formula-border: #00cec9; 
+            --example-bg: #353b48;  
+            --example-border: #e1b12c;
+            --input-bg: #2d3436;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -33,17 +48,23 @@
             background-color: var(--bg-body);
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Navigation Bar */
+        
         nav {
             position: sticky;
             top: 0;
             background-color: var(--primary);
             padding: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             z-index: 1000;
+        }
+
+        .nav-links {
             overflow-x: auto;
             white-space: nowrap;
         }
@@ -63,26 +84,63 @@
             border-bottom: 2px solid var(--secondary);
         }
 
-        /* Header */
+       
+        #theme-toggle {
+            background: none;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #theme-toggle:hover {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+
+       
         header {
             background: linear-gradient(135deg, #2c2c54 0%, #474787 100%);
             color: white;
-            padding: 4rem 1rem;
+            padding: 4rem 1rem 5rem 1rem; 
             text-align: center;
         }
 
         header h1 { margin: 0; font-size: 2.8rem; font-weight: 700; }
         header p { font-size: 1.3rem; opacity: 0.9; margin-top: 10px; }
 
-        /* Main Container */
+      
+        .search-wrapper {
+            max-width: 600px;
+            margin: 20px auto 0;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            outline: none;
+            text-align: center;
+            background-color: var(--input-bg);
+            color: var(--text-main);
+        }
+
+        
         .container {
             max-width: 900px;
-            margin: -30px auto 0; /* Pull up to overlap header slightly */
+            margin: -40px auto 0;
             padding: 20px;
             position: relative;
         }
 
-        /* Sections */
+        
         section {
             background: var(--bg-section);
             margin-bottom: 2.5rem;
@@ -90,6 +148,7 @@
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             scroll-margin-top: 90px;
+            transition: background-color 0.3s ease;
         }
 
         h2 {
@@ -105,8 +164,10 @@
             border-left: 5px solid #0984e3;
             padding-left: 12px;
         }
+        
+        [data-theme="dark"] h3 { color: #74b9ff; border-left-color: #74b9ff; }
 
-        /* Content Boxes */
+        
         .formula-box {
             background-color: var(--formula-bg);
             border-left: 5px solid var(--formula-border);
@@ -118,6 +179,7 @@
             border-radius: 0 8px 8px 0;
         }
 
+        
         .example-box {
             background-color: var(--example-bg);
             border: 2px solid var(--example-border);
@@ -136,14 +198,34 @@
             letter-spacing: 1.2px;
         }
 
-        /* Images */
+        .solution-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--example-border);
+        }
+
+        .reveal-btn {
+            background-color: var(--example-border);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2d3436;
+            margin-top: 10px;
+            transition: transform 0.1s;
+        }
+
+        .reveal-btn:hover { transform: scale(1.05); }
+
+        
         .img-container {
             text-align: center;
             margin: 25px 0;
-            background: #f8f9fa;
+            background: rgba(0,0,0,0.05);
             padding: 15px;
             border-radius: 8px;
-            border: 1px solid #dfe6e9;
         }
 
         img {
@@ -151,29 +233,31 @@
             height: auto;
             border-radius: 4px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: white; 
         }
 
         .caption {
             display: block;
             margin-top: 8px;
             font-size: 0.9rem;
-            color: #636e72;
+            color: var(--text-main);
             font-style: italic;
+            opacity: 0.8;
         }
 
-        /* Table */
+        
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            background: white;
+            background: var(--bg-section);
         }
         
         th { background-color: var(--primary); color: white; padding: 12px; text-align: left; }
-        td { border: 1px solid #ddd; padding: 12px; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
+        td { border: 1px solid #7f8c8d; padding: 12px; }
+        tr:nth-child(even) { background-color: rgba(0,0,0,0.05); }
 
-        /* Footer */
+       
         footer {
             text-align: center;
             padding: 3rem;
@@ -190,44 +274,43 @@
         }
         
         .top-link:hover { text-decoration: underline; color: var(--primary); }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            section { padding: 1.5rem; }
-            nav a { margin: 0 8px; font-size: 0.9rem; }
-        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#functions">1. Functions</a>
-        <a href="#algebra">2. Algebra</a>
-        <a href="#trigonometry">3. Trig</a>
-        <a href="#sequences">4. Sequences</a>
-        <a href="#calculus">5. Calculus</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#functions">1. Functions</a>
+            <a href="#algebra">2. Algebra</a>
+            <a href="#trigonometry">3. Trig</a>
+            <a href="#sequences">4. Sequences</a>
+            <a href="#calculus">5. Calculus</a>
+        </div>
+        <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
     </nav>
 
     <header id="home">
         <h1>IB Math AA HL</h1>
-        <p>Year 1 Revision Guide</p>
+        <p>Interactive Revision Guide</p>
+        
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" onkeyup="filterContent()" placeholder="🔍 Type to filter topics (e.g. 'Log', 'Inverse')...">
+        </div>
     </header>
 
     <div class="container">
 
-        <section>
+        <section class="revision-chapter">
             <h2>How to use this guide</h2>
-            <p>This is your offline revision resource. Scroll down or use the navigation bar to jump to specific chapters.</p>
+            <p>This tool is now interactive. Use the search bar above to find specific topics instantly.</p>
             <ul>
                 <li><strong>Formulas</strong> are in <span style="color:var(--secondary); font-weight:bold;">Cyan</span> boxes.</li>
-                <li><strong>Worked Examples</strong> are in <span style="color:#fdcb6e; font-weight:bold;">Yellow</span> boxes.</li>
-                <li><strong>Diagrams</strong> are provided as images below.</li>
+                <li><strong>Worked Examples</strong> are in <span style="color:#fdcb6e; font-weight:bold;">Yellow</span> boxes. Click "Reveal" to test yourself.</li>
             </ul>
         </section>
 
-        <section id="functions">
+        <section id="functions" class="revision-chapter">
             <h2>Chapter 1: Functions</h2>
             
             <h3>Composite Functions</h3>
@@ -241,29 +324,28 @@
             Geometrically, the graph of an inverse is a reflection of the original function over the line <code>y = x</code>.</p>
             
             <div class="img-container">
-                <img src="https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/1833/2017/01/31190435/CNX_Precalc_Figure_01_07_0102.jpg" 
-                     alt="Graph showing function and inverse reflected over y=x">
-                <span class="caption">Figure 1.1: The graph of f(x) and f⁻¹(x) are reflections over the line y = x.</span>
-            </div>
-
-            <div class="example-box">
-                <span class="example-title">Worked Example: Finding Inverse</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Inverse_function.svg/600px-Inverse_function.svg.png" alt="Graph showing inverse function reflection over y=x">
+                <span class="caption">Figure 1.1: Reflection of f(x) over the line y=x to find f⁻¹(x).</span>
             </div>
 
             <div class="example-box">
                 <span class="example-title">Worked Example: Finding Inverse</span>
                 <p><strong>Question:</strong> Find the inverse of f(x) = (2x + 1) / (x - 3).</p>
-                <p><strong>1. Swap variables:</strong> x = (2y + 1) / (y - 3)</p>
-                <p><strong>2. Multiply by denominator:</strong> x(y - 3) = 2y + 1</p>
-                <p><strong>3. Expand:</strong> xy - 3x = 2y + 1</p>
-                <p><strong>4. Group y terms:</strong> xy - 2y = 3x + 1</p>
-                <p><strong>5. Factor y:</strong> y(x - 2) = 3x + 1</p>
-                <p><strong>Answer:</strong> f<sup>-1</sup>(x) = (3x + 1) / (x - 2)</p>
+                
+                <button class="reveal-btn" onclick="toggleSolution(this)">👁 Reveal Solution</button>
+                <div class="solution-content">
+                    <p><strong>1. Swap variables:</strong> x = (2y + 1) / (y - 3)</p>
+                    <p><strong>2. Multiply by denominator:</strong> x(y - 3) = 2y + 1</p>
+                    <p><strong>3. Expand:</strong> xy - 3x = 2y + 1</p>
+                    <p><strong>4. Group y terms:</strong> xy - 2y = 3x + 1</p>
+                    <p><strong>5. Factor y:</strong> y(x - 2) = 3x + 1</p>
+                    <p><strong>Answer:</strong> f<sup>-1</sup>(x) = (3x + 1) / (x - 2)</p>
+                </div>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
         </section>
 
-        <section id="algebra">
+        <section id="algebra" class="revision-chapter">
             <h2>Chapter 2: Algebra</h2>
 
             <h3>Logarithms</h3>
@@ -284,21 +366,25 @@
             <div class="example-box">
                 <span class="example-title">Worked Example: Finding a specific term</span>
                 <p><strong>Question:</strong> Find the coefficient of x<sup>2</sup> in the expansion of (2x + 3)<sup>4</sup>.</p>
-                <p><strong>1. Identify parts:</strong> a = 2x, b = 3, n = 4. We need the term with x<sup>2</sup>.</p>
-                <p><strong>2. Determine r:</strong> Since term has (2x)<sup>4-r</sup>, we need 4-r = 2, so r = 2.</p>
-                <p><strong>3. Apply Formula:</strong> <sub>4</sub>C<sub>2</sub> · (2x)<sup>2</sup> · (3)<sup>2</sup></p>
-                <p><strong>4. Calculate:</strong> 6 · 4x<sup>2</sup> · 9</p>
-                <p><strong>5. Simplify:</strong> 6 · 36 · x<sup>2</sup> = 216x<sup>2</sup></p>
-                <p><strong>Answer:</strong> The coefficient is 216.</p>
+                
+                <button class="reveal-btn" onclick="toggleSolution(this)">👁 Reveal Solution</button>
+                <div class="solution-content">
+                    <p><strong>1. Identify parts:</strong> a = 2x, b = 3, n = 4. We need the term with x<sup>2</sup>.</p>
+                    <p><strong>2. Determine r:</strong> Since term has (2x)<sup>4-r</sup>, we need 4-r = 2, so r = 2.</p>
+                    <p><strong>3. Apply Formula:</strong> <sub>4</sub>C<sub>2</sub> · (2x)<sup>2</sup> · (3)<sup>2</sup></p>
+                    <p><strong>4. Calculate:</strong> 6 · 4x<sup>2</sup> · 9</p>
+                    <p><strong>5. Simplify:</strong> 6 · 36 · x<sup>2</sup> = 216x<sup>2</sup></p>
+                    <p><strong>Answer:</strong> The coefficient is 216.</p>
+                </div>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
         </section>
 
-        <section id="trigonometry">
+        <section id="trigonometry" class="revision-chapter">
             <h2>Chapter 3: Trigonometry</h2>
 
             <h3>The Unit Circle</h3>
-            <p>For any angle θ, the coordinate on the unit circle is <code>(cos θ, sin θ)</code>. The x-coordinate is cosine, the y-coordinate is sine.</p>
+            <p>For any angle θ, the coordinate on the unit circle is <code>(cos θ, sin θ)</code>.</p>
             
             <div class="img-container">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Unit_circle_angles_color.svg/600px-Unit_circle_angles_color.svg.png" alt="Unit Circle Chart with Radians and Degrees">
@@ -308,26 +394,28 @@
             <h3>Double Angle Identities</h3>
             <div class="formula-box">
                 sin(2θ) = 2 sinθ cosθ<br>
-                cos(2θ) = cos<sup>2</sup>θ - sin<sup>2</sup>θ<br>
-                        = 2cos<sup>2</sup>θ - 1<br>
-                        = 1 - 2sin<sup>2</sup>θ
+                cos(2θ) = 2cos<sup>2</sup>θ - 1
             </div>
 
             <div class="example-box">
                 <span class="example-title">Worked Example: Trig Equation</span>
                 <p><strong>Question:</strong> Solve sin(2x) = cos(x) for 0 ≤ x ≤ π.</p>
-                <p><strong>1. Use Identity:</strong> 2sin(x)cos(x) = cos(x)</p>
-                <p><strong>2. Rearrange:</strong> 2sin(x)cos(x) - cos(x) = 0</p>
-                <p><strong>3. Factor:</strong> cos(x) [2sin(x) - 1] = 0</p>
-                <p><strong>4. Solve cases:</strong><br>
-                   Case A: cos(x) = 0 → x = π/2<br>
-                   Case B: sin(x) = 1/2 → x = π/6, 5π/6</p>
-                <p><strong>Answer:</strong> x = π/6, π/2, 5π/6</p>
+                
+                <button class="reveal-btn" onclick="toggleSolution(this)">👁 Reveal Solution</button>
+                <div class="solution-content">
+                    <p><strong>1. Use Identity:</strong> 2sin(x)cos(x) = cos(x)</p>
+                    <p><strong>2. Rearrange:</strong> 2sin(x)cos(x) - cos(x) = 0</p>
+                    <p><strong>3. Factor:</strong> cos(x) [2sin(x) - 1] = 0</p>
+                    <p><strong>4. Solve cases:</strong><br>
+                       Case A: cos(x) = 0 → x = π/2<br>
+                       Case B: sin(x) = 1/2 → x = π/6, 5π/6</p>
+                    <p><strong>Answer:</strong> x = π/6, π/2, 5π/6</p>
+                </div>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
         </section>
 
-        <section id="sequences">
+        <section id="sequences" class="revision-chapter">
             <h2>Chapter 4: Sequences & Series</h2>
 
             <h3>Arithmetic vs Geometric</h3>
@@ -350,7 +438,7 @@
             </table>
 
             <h3>Sum to Infinity</h3>
-            <p>Only exists for Geometric series where <code>|r| < 1</code> (convergent).</p>
+            <p>Only exists for Geometric series where <code>|r| < 1</code>.</p>
             <div class="formula-box">
                 S<sub>∞</sub> = u<sub>1</sub> / (1 - r)
             </div>
@@ -358,19 +446,23 @@
             <div class="example-box">
                 <span class="example-title">Worked Example: Sigma Notation</span>
                 <p><strong>Question:</strong> Calculate Σ (from n=1 to ∞) of 10(0.5)<sup>n</sup>.</p>
-                <p><strong>1. Expand terms:</strong> u<sub>1</sub>=5, u<sub>2</sub>=2.5...</p>
-                <p><strong>2. Identify type:</strong> Geometric, r=0.5.</p>
-                <p><strong>3. Apply Formula:</strong> S = 5 / (1 - 0.5) = 10</p>
-                <p><strong>Answer:</strong> 10</p>
+                
+                <button class="reveal-btn" onclick="toggleSolution(this)">👁 Reveal Solution</button>
+                <div class="solution-content">
+                    <p><strong>1. Expand terms:</strong> u<sub>1</sub>=5, u<sub>2</sub>=2.5...</p>
+                    <p><strong>2. Identify type:</strong> Geometric, r=0.5.</p>
+                    <p><strong>3. Apply Formula:</strong> S = 5 / (1 - 0.5) = 10</p>
+                    <p><strong>Answer:</strong> 10</p>
+                </div>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
         </section>
 
-        <section id="calculus">
+        <section id="calculus" class="revision-chapter">
             <h2>Chapter 5: Introduction to Calculus</h2>
 
             <h3>Differentiation</h3>
-            <p>The derivative <code>f'(x)</code> represents the gradient of the tangent to the curve at any point.</p>
+            <p>The derivative <code>f'(x)</code> represents the gradient of the tangent.</p>
             <div class="formula-box">
                 f'(x) = lim (h→0) [ (f(x+h) - f(x)) / h ]
             </div>
@@ -389,10 +481,14 @@
             <div class="example-box">
                 <span class="example-title">Worked Example: Finding Equation of Tangent</span>
                 <p><strong>Question:</strong> Find the equation of the tangent to y = x<sup>2</sup> + 3 at x = 1.</p>
-                <p><strong>1. Point:</strong> y(1) = 4. Point is (1, 4).</p>
-                <p><strong>2. Gradient:</strong> dy/dx = 2x. At x=1, m=2.</p>
-                <p><strong>3. Equation:</strong> y - 4 = 2(x - 1) → y = 2x + 2</p>
-                <p><strong>Answer:</strong> y = 2x + 2</p>
+                
+                <button class="reveal-btn" onclick="toggleSolution(this)">👁 Reveal Solution</button>
+                <div class="solution-content">
+                    <p><strong>1. Point:</strong> y(1) = 4. Point is (1, 4).</p>
+                    <p><strong>2. Gradient:</strong> dy/dx = 2x. At x=1, m=2.</p>
+                    <p><strong>3. Equation:</strong> y - 4 = 2(x - 1) → y = 2x + 2</p>
+                    <p><strong>Answer:</strong> y = 2x + 2</p>
+                </div>
             </div>
             <a href="#home" class="top-link">↑ Back to Top</a>
         </section>
@@ -403,5 +499,52 @@
         &copy; IB Math AA HL Offline Revision Tool
     </footer>
 
+    <script>
+       
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                btn.innerText = "🌙 Dark Mode";
+                btn.style.color = "var(--secondary)";
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                btn.innerText = "☀️ Light Mode";
+                btn.style.color = "#f1c40f"; 
+            }
+        }
+
+       
+        function toggleSolution(button) {
+            const content = button.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                button.innerText = "👁 Reveal Solution";
+            } else {
+                content.style.display = "block";
+                button.innerText = "🙈 Hide Solution";
+            }
+        }
+
+        
+        function filterContent() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const sections = document.getElementsByClassName('revision-chapter');
+
+            for (let i = 0; i < sections.length; i++) {
+                let sectionText = sections[i].innerText.toLowerCase();
+                if (sectionText.includes(input)) {
+                    sections[i].style.display = "block";
+                } else {
+                    sections[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    
+
 </body>
 </html>
+
